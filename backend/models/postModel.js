@@ -20,8 +20,14 @@ const postSchema = new Schema({
 
   user_id: {
     type: Schema.Types.ObjectId, 
-    ref: 'User', 
+    ref: 'User',
     required: true
+  },
+
+  blog_id: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Blog', 
+    required: false
   }
 
 })

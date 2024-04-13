@@ -6,7 +6,7 @@ const {
   getBlog,
   deleteBlog,
   updateBlog,
-  getPosts
+  getPostsFromBlog
 } = require('../controllers/blogController'); // Import controllers
 
 // GET all blogs
@@ -25,6 +25,6 @@ router.delete('/:id', deleteBlog);
 router.patch('/:id', updateBlog);
 
 // GET all posts
-router.get('/:id/posts', getPosts);
+router.get('/blog_id/:id', getPostsFromBlog);
 
 module.exports = router;

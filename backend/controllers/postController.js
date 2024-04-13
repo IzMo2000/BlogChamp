@@ -37,11 +37,11 @@ const getPostsByUserID = async (req, res) => {
 
 // create a single post
 const createPost = async (req, res) => {
-  const {like_count, num_comments, date_posted, user_id} = req.body
+  const {like_count, num_comments, date_posted, user_id, blog_id} = req.body
   
   // add post to db
   try {
-    const post = await Post.create({like_count, num_comments, date_posted, user_id})
+    const post = await Post.create({like_count, num_comments, date_posted, user_id, blog_id})
     res.status(200).json(post)
   } catch (error) {
     res.status(400).json({error: error.message})

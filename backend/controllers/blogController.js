@@ -8,9 +8,11 @@ const getBlogs = async (req, res) => {
   res.status(200).json(blogs)
 }
 
-// get all posts
-const getPosts = async (req, res) => {
-  const posts = await Post.find({}).sort({createdAt: -1})
+// get all posts within a blog
+const getPostsFromBlog = async (req, res) => {
+  const {id} = req.params
+  console.log(req.params)
+  const posts =  await Post.find({blog_id : id})
 
   res.status(200).json(posts)
 }
@@ -91,5 +93,5 @@ module.exports = {
   getBlog,
   deleteBlog,
   updateBlog,
-  getPosts
+  getPostsFromBlog
 }
