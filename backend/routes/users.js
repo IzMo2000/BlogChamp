@@ -11,7 +11,7 @@ const {
 } = require('../controllers/userController')
 const router = express.Router()
 
-// GET all posts
+// GET all users
 router.get('/', getUsers)
 
 // GET a single user by ID
@@ -20,10 +20,10 @@ router.get('/id/:id', getUserById)
 // GET a single user by ID
 router.get('/username/:username', getUserByUsername)
 
-// POST a new post
+// POST a new user
 router.post('/', createUser)
 
-// DELETE a post
+// DELETE a user
 router.delete('/:id', deleteUser)
 
 // UPDATE a user
