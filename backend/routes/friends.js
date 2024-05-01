@@ -14,7 +14,7 @@ const router = express.Router()
 // GET all friends
 router.get('/', getFriends)
 
-// GET a single post
+// GET a single friend
 router.get('/:id', getFriend)
 
 // GET all friends of a user
