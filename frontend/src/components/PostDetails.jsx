@@ -19,9 +19,11 @@ const PostDetails = ({ post }) => {
   const [likeCount, setLikeCount] = useState(post.like_count);
   const [numComments, setNumComments] = useState(post.num_comments);
 
+  // user data variables 
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  // get the user data for post details
   useEffect(() => {  
     const fetchUser = async () => {
       try {
@@ -29,14 +31,12 @@ const PostDetails = ({ post }) => {
         const response = await fetch(`http://localhost:4000/api/users/id/${post.user_id}`);
         const userData = await response.json();
         setUser(userData);
-      } catch (error) {
+      } catch (error) { // check for errors
         setError(error.message);
       }
     };
     fetchUser();
   }, []);
-
-  console.log(user);
 
   // Function to handle like button click
   const handleLike = async () => {
@@ -50,6 +50,7 @@ const PostDetails = ({ post }) => {
     }
   };
 
+  // fetch all the comments for the post formating 
   useEffect(() => {
     const fetchCommentCount = async () => {
       try {
@@ -64,6 +65,7 @@ const PostDetails = ({ post }) => {
     fetchCommentCount(); // Fetch comment count when the component mounts
   }, [post._id]);
 
+  // return the formatted post with the correct CSS and styles. 
   return (
 <div className="post-details">
   <h4>{post.title}</h4>
