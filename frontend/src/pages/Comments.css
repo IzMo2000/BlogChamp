@@ -13,7 +13,7 @@
 
 .main-content {
   flex: 2; /* Take up 2/3 of the available space */
-  color: #002454; /* Set text color to yellow */
+  color: #002454; 
   overflow-y: auto; 
   width: fit-content;
   block-size: fit-content;
@@ -44,11 +44,11 @@ h2 {
 }
 
 .comment p {
-  color: #002454; /* Set text color to yellow */
+  color: #002454; 
 }
 
 .comment-metadata {
   margin-top: 10px;
   font-style: italic;
-  color: #002454; /* Set text color to yellow */
+  color: #002454; 
 }
