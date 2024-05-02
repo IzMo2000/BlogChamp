@@ -22,6 +22,7 @@ const PostDetails = ({ post }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+// fetch users 
   useEffect(() => {  
     const fetchUser = async () => {
       try {
@@ -65,17 +66,27 @@ const PostDetails = ({ post }) => {
   }, [post._id]);
 
   return (
+// master class
 <div className="post-details">
+  {/* Display post title and user  */}
   <h4>{post.title}</h4>
   {user && <p>Author: {user.username}</p>}
+
+  {/* Display post content */}
   <p className="content">{post.content}</p>
+
+  {/* Display post metadata */}
   <div className="metadata">
     <span>{likeCount} Likes</span>
     <p>{`Comments: ${numComments}`}</p>
   </div>
+
+  {/* Display date posted  */}
   <div className="date-posted">{formattedDate}</div>
+  {/* Like and comment buttons */}
   <div className="button-container">
     <button onClick={handleLike} className="like-button">&#128077; Like</button>
+    {/* View comments button */}
     <Link to={`/comments/${post._id}`} className="comments-button">
       View Comments
     </Link>

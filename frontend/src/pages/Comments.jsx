@@ -96,6 +96,7 @@ const Comments = () => {
           {isDialogOpen && (
             <div className="dialog">
               <div className="create-comment-form">
+                {/* Create comment form */}
                 <h3>Create Comment</h3>
                 <form onSubmit={handleCommentSubmit}>
                   <input
@@ -105,6 +106,7 @@ const Comments = () => {
                     placeholder="Enter your comment..."
                     required
                   />
+                  {/* Submit comment button */}
                   <div className="buttons">
                     <button type="submit">Submit</button>
                     <button type="button" onClick={closeDialog}>Close</button>
@@ -114,6 +116,7 @@ const Comments = () => {
             </div>
           )}
         </div>
+        {/* Display list of comments for post */}
         <div className="comments-list">
           {loading ? (
             <p>Loading...</p> // Display loading message while comments are being fetched

@@ -40,23 +40,28 @@ const Login = () => {
         if (user) {
           console.log('User found: ', user.username);
           console.log('Login successful!');
+          // post call to api 
           const response = await fetch("http://localhost:4000/login", {
             method: "POST",
             credentials: "include",
             headers: {
               "Content-type": "application/json",
             },
+            // use user's username and password in api call 
             body: JSON.stringify({
               id: user.username,
               password: user.password,
             }),
           });
+          // check for good login
           if (response.status === 200) {
               console.log(user);
               localStorage.setItem('user_id', user._id);
               console.log(user._id);
+              // navigate to post page 
               navigate('/Post');
           }
+        // else, bad login so throw error
         } else {
           setErrorMessage('User not found. Please enter a valid username.');
         }
@@ -69,6 +74,7 @@ const Login = () => {
     }
   };
 
+  // handle sign up 
   const handleSignUp = async () => {
     if (newUsername && newPassword && newEmail) {
       try {
@@ -80,6 +86,7 @@ const Login = () => {
             return;
         }
 
+        // validate email and check for nau.edu 
         const emailRegex = /@nau\.edu$/i;
         // Check if the email matches the regex
         if (!emailRegex.test(newEmail)) {
@@ -138,7 +145,7 @@ const Login = () => {
       </div>
 
       <div className = 'container'>
-
+        {/* login container  */}
         <div className='login'>
 
           <h2>Login</h2>
@@ -148,6 +155,7 @@ const Login = () => {
 
         </div>
 
+        {/* signup container  */}
         <div className='signup'>
 
           <h2>Sign Up</h2>

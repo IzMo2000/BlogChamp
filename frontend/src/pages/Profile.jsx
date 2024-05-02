@@ -103,6 +103,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
+      {/* display sidebar */}
       <div className="sidebar">
         <Sidebar />
       </div>
@@ -133,6 +134,7 @@ const Profile = () => {
           </div>
         )}
         {error && <p>Error: {error}</p>}
+        {/* add friend form */}
         <div className="add-friend">
           <h2>Add Friend</h2>
           <form onSubmit={handleAddFriend}>
@@ -147,6 +149,7 @@ const Profile = () => {
         </div>
         {error && <p>Error: {error}</p>}
       </div>
+      {/* display friends list */}
       <div className="friends-list">
         <h2>Friends List</h2>
         {friendUsernames && friendUsernames.length > 0 && (

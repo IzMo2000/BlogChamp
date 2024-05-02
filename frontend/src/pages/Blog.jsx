@@ -14,6 +14,7 @@ const Blogs = () => {
   const { username } = useParams();
 
 
+  // use effect to get users 
   useEffect(() => {
     // Retrieve username from local storage
     const storedUserId = localStorage.getItem('user_id');
@@ -30,6 +31,7 @@ const Blogs = () => {
     };
     fetchUser();
 
+    // fetch friends 
     const fetchFriendsIds = async () => {
       try {
         // Use stored username to fetch user data

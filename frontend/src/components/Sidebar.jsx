@@ -10,16 +10,21 @@ const Sidebar = () => {
   // Retrieve username from local storage
   const storedUserId = localStorage.getItem('user_id');
 
+  // sign out function 
   const signOut = async () => {
+    // api get method 
     try {
       const response = await fetch("http://localhost:4000/logout", {
         method: "GET",
         credentials: "include",
       });
 
+      // if good response 
       if (response.status === 200) {
         navigate("/");
-      } else {
+      }
+      // else, display error message 
+      else {
         console.error("Failed to sign out");
       }
     } catch (error) {
@@ -31,14 +36,17 @@ const Sidebar = () => {
   const [postContent, setPostContent] = useState('');
   const [addToBlog, setAddToBlog] = useState(false)
 
+  // open create post dialog 
   const openDialog = () => {
     setIsDialogOpen(true);
   };
 
+  // handle change sto check box 
   const handleCheckboxChange = (event) => {
     setAddToBlog(event.target.checked)
   }
 
+  // close the create post box 
   const closeDialog = () => {
     setIsDialogOpen(false);
     // Clear post title and content when closing the dialog
@@ -46,6 +54,7 @@ const Sidebar = () => {
     setPostContent('');
   };
 
+  // handle change to post content and title 
   const handlePostTitleChange = (event) => {
     setPostTitle(event.target.value);
   };
@@ -54,20 +63,27 @@ const Sidebar = () => {
     setPostContent(event.target.value);
   };
 
+  // handle submitting post 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let blog_id
 
+    // check if post being added to blog 
     if (addToBlog) {
+      // fetch user's blog 
       const blog = await BlogFacade.fetchBlogByUserid(storedUserId)
+
+      // log the current blog 
       console.log(blog._id)
       blog_id = blog._id
     }
 
+    // else, not adding to blog so set blog id to null 
     else {
       blog_id = null
     }
 
+    // create post data structure 
     const postData = {
       like_count: 0, // Default value for like count
       num_comments: 0, // Default value for number of comments
@@ -81,6 +97,7 @@ const Sidebar = () => {
 
     console.log("postData:", postData);
 
+    // create post using facade 
     PostFacade.createPost(postData)
   
     // After handling submission, close the dialog
@@ -88,6 +105,7 @@ const Sidebar = () => {
   };
 
   return (
+    // master sidebar class 
     <div className="sidebar">
       <Link to="/post" className="sidebar-button">Posts</Link>
       <Link to="/blog" className="sidebar-button">Blogs</Link>
@@ -101,7 +119,7 @@ const Sidebar = () => {
           <div>
             <h1>Create Post</h1>
             <form onSubmit={handleSubmit}>
-
+            {/* Get post title  */}
             <input
                 type="text"
                 value={postTitle}
@@ -109,6 +127,7 @@ const Sidebar = () => {
                 placeholder="Enter post title..."
                 required
               />
+              {/* Get post content  */}
               <input
                 type = "text"
                 value={postContent}
@@ -116,6 +135,7 @@ const Sidebar = () => {
                 placeholder="Enter your post content here..."
                 required
               />
+              {/* Check for blog  */}
               <input className='blog-check'
                 type="checkbox"
                 checked={addToBlog}

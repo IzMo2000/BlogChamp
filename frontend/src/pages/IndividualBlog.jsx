@@ -11,6 +11,7 @@ const IndividualBlog = () => {
     const [posts, setPosts] = useState(null);
     const [error, setError] = useState(null);
 
+    // use effect to fetch user 
     useEffect(() => {
         // Retrieve username from local storage        
         const fetchUser = async () => {
@@ -25,7 +26,8 @@ const IndividualBlog = () => {
         };
         fetchUser();
     }, [username]);
-    
+
+    // use effect to fetch posts 
     useEffect(() => {
         const fetchPosts = async (user) => {
             try{
